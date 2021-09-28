@@ -1,3 +1,4 @@
+import { StoreModule } from '@ngrx/store';
 import { MenuRoutingModule } from './menu-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,7 +10,8 @@ import { AddMenuComponent } from './add-menu/add-menu.component';
   declarations: [ManageMenuComponent, MenuListComponent, AddMenuComponent],
   imports: [
     CommonModule,
-    MenuRoutingModule
+    MenuRoutingModule,
+    StoreModule.forFeature('menu',{})
   ]
 })
 export class MenuModule { }

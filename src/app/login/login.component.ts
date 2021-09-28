@@ -1,4 +1,6 @@
+import { appState } from './../shared/app.state';
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  username:string;
+  password:string;
+
+  constructor(
+    private store:Store<appState>
+  ) { }
 
   ngOnInit() {
+  }
+
+  login(){
+    this.store.dispatch({type: '[Login] Login Request', username: this.username, password: this.password });
   }
 
 }
