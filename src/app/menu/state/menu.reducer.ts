@@ -1,5 +1,6 @@
-import { createFeatureSelector, createReducer, createSelector } from "@ngrx/store";
+import { createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store";
 import * as mainState from "src/app/shared/app.state";
+import * as menuActions from './menu.actions';
 
 // to maintain lazy loading extend app state to have menu items in menu module like shown below
 export interface appState extends mainState.appState{
@@ -43,5 +44,10 @@ export const getMenuItems = createSelector(
 
 export const menuReducer = createReducer<MenuState>(
   initialMenuState,
-
+  on(menuActions.showStocks, (state):MenuState => {
+    return {
+      ...state,
+      showMenuStock: !state.showMenuStock
+    };
+  }),
 );
