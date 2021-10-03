@@ -1,3 +1,4 @@
+import { createFeatureSelector, createSelector } from "@ngrx/store";
 
 export interface appState {
   username: string,
@@ -10,3 +11,10 @@ export const initialAppState: appState = {
   password: '',
   error: ''
 }
+
+const getappFeatureState = createFeatureSelector<appState>('user');
+
+export const getUser = createSelector(
+  getappFeatureState,
+  state => state.username
+);

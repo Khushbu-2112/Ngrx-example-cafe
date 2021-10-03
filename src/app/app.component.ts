@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { appState } from './shared/app.state';
+import { appState, getUser } from './shared/app.state';
 
 @Component({
   selector: 'app-root',
@@ -18,8 +18,8 @@ export class AppComponent implements OnInit {
   ){}
 
   ngOnInit(){
-    this.user$ = this.store.select('user').subscribe( (res:appState) => {
-      this.username  = res.username;
+    this.user$ = this.store.select(getUser).subscribe( (res) => {
+      this.username  = res;
     })
   }
 
