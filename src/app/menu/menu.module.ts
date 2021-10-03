@@ -6,12 +6,14 @@ import { CommonModule } from '@angular/common';
 import { ManageMenuComponent } from './manage-menu/manage-menu.component';
 import { MenuListComponent } from './menu-list/menu-list.component';
 import { AddMenuComponent } from './add-menu/add-menu.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ManageMenuComponent, MenuListComponent, AddMenuComponent],
   imports: [
     CommonModule,
     MenuRoutingModule,
+    ReactiveFormsModule,
     StoreModule.forFeature('menu',menuReducer)
   ]
 })
