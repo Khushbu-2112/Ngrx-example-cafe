@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { appState, getUser } from './shared/app.state';
+import * as userActions from './shared/user.actions';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,10 @@ export class AppComponent implements OnInit {
     this.user$ = this.store.select(getUser).subscribe( (res) => {
       this.username  = res;
     })
+  }
+
+  logOut(){
+    this.store.dispatch(userActions.doLogout());
   }
 
 }

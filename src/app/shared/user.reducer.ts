@@ -10,5 +10,12 @@ export const userReducer = createReducer<appState>(
       username: action.username,
       password: action.password
     }
+  }),
+  on(userActions.doLogout, (state,action): appState => {
+    return {
+      ...state,
+      username: '',
+      password: ''
+    }
   })
 );

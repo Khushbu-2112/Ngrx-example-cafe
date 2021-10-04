@@ -32,6 +32,7 @@
   </div>
   <div>
     <app-add-menu [selectedItem]="selectedItem$ | async"
+    [allForLen]="menuItems$ | async"
     (clearCurrent)="clearItem()"
     (update)="updateItem($any($event))"
     (delete)="deleteItem($any($event))"

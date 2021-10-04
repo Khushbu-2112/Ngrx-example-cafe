@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { appState } from 'src/app/shared/app.state';
 import { getCurrentMenuItem, itemType, MenuItem } from '../state/menu.reducer';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { EventEmitter } from '@angular/core';
 
 @Component({
@@ -15,6 +14,8 @@ export class AddMenuComponent implements OnInit {
 
   pageTitle:string;
   @Input() selectedItem:MenuItem;
+  @Input() allForLen:Array<MenuItem>;
+
   @Output() create = new EventEmitter<MenuItem>();
   @Output() update = new EventEmitter<MenuItem>();
   @Output() delete = new EventEmitter<MenuItem>();
@@ -65,7 +66,7 @@ export class AddMenuComponent implements OnInit {
   }
 
   cancelEdit(): void {
-    this.displayItem(this.selectedItem);
+    this.clearCurrent.emit();
   }
 
   deleteItem(): void {
@@ -84,6 +85,7 @@ export class AddMenuComponent implements OnInit {
         const item = { ...this.selectedItem, ...this.menuItemForm.value };
 
         if (item.id === 0) {
+          item.id = this.allForLen[this.allForLen.length-1].id + 1;
           this.create.emit(item);
         } else {
           this.update.emit(item);
